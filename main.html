@@ -1,0 +1,50 @@
+<html> 
+ <head>
+    <title></title> 
+</head>
+ <body>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body> 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+ <script>
+var sketchProc = function(processingInstance) {
+with (processingInstance) {
+//START
+size(400, 400); 
+frameRate(120);
+
+noStroke();
+var sqSize = 25;
+var rows = 400/sqSize;
+var cols = 400/sqSize;
+
+for (var i = 0; i < rows; i++) {
+    for(var j = 0; j < cols; j++){
+        if (i<j){
+            fill(0,floor(random(100,255)),0);
+            rect(i*sqSize,j*sqSize,sqSize,sqSize);
+        }
+        else if (i === j){
+            fill(floor(random(100,255)),0,0);
+            rect(i*sqSize,j*sqSize,sqSize,sqSize);
+        }
+        else if (i>j){
+            fill(0,0,floor(random(100,255)));
+            rect(i*sqSize,j*sqSize,sqSize,sqSize);
+        }
+    
+    }
+}
+
+
+//END
+}
+};
+
+var canvas = document.getElementById("mycanvas"); 
+var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
